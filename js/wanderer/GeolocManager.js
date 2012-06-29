@@ -27,7 +27,7 @@ var GeolocManager = Proto.extend({
 		// Create the géolocation control with some options for the browser
 		this.geolocate = new OpenLayers.Control.Geolocate({
 		    bind: false,
-		    watch: false,
+		    watch: true,
 		    geolocationOptions: {
 		        enableHighAccuracy: false,
 		        maximumAge: 0,

@@ -56,7 +56,21 @@ var SelectionManager = Proto.extend({
 		
 		// detect the click on the emotion table
 		
-		$('td').click(function(e){ 
+		$('td').click(function(e)
+		{ 
+			/* 
+			récupérer un identifiant unique
+				Checker si un cookie existe
+					si oui, récupérer l'id du user
+					si non, créer un cookie avec un id unique pour l'utilisateur
+				identifier l'utilisateur
+				optionnel : demander à l'utilisateur de choisir un pseudo / password
+			
+			*/
+			
+			// display some confirmation text
+			$("#editor_contentDiv").html("<h2>Your feelings have been recorded.</h2><p><a href='' onclick='location.reload();'>Reload this page</a> to see it on the map.</p>");
+			
 			var colIndex = $(e.currentTarget).prevAll().length;
 			var rowIndex = $(e.currentTarget).parent('tr').prevAll().length;
 			//console.log( colIndex / 2, 1 - rowIndex / 2 );

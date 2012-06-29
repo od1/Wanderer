@@ -7,14 +7,16 @@ var DatasManager = Proto.extend({
 	
 	// Properties
 	
-	prop: undefined,
+	url: undefined,
+	user: "unknown",
 	
 	
 	// Constructor
 	
-	constructor: function()
+	constructor: function(_url, _user)
 	{
-		
+		this.url = _url;
+		this.user = _user;
 	},
 	
 	
@@ -34,16 +36,15 @@ var DatasManager = Proto.extend({
 				 "excitement": e.excitement, 
 				 "value": e.value,
 		  		 "date": d.toUTCString(), 
-		  		 "author": "default"
+		  		 "author": this.user
 		  		}
 			}
 		
-		$.ajax( { url: "https://api.mongolab.com/api/1/databases/emotions/collections/FeatureCollection?apiKey=4fd8b749e4b0aedd849737fc",
+		$.ajax( { url: this.url,
 			      data: JSON.stringify(newFeature),
 			      type: "POST",
 			      contentType: "application/json" } );
 		
-		$("#editor_contentDiv").html("<h2>Your feelings have been recorded.</h2><p><a href='' onclick='location.reload();'>Reload this page</a> to see it on the map.</p>");
 	}
 });
 

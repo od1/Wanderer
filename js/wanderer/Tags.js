@@ -7,14 +7,15 @@ var Tags = Proto.extend({
 	
 	// Properties
 	
+	url: undefined,
 	
 	// Constructor
 	
-	constructor: function()
+	constructor: function(_url)
 	{
 		console.log("constructor of Tags");
 		
-		
+		this.url = _url;
 	},
 	
 	
@@ -24,7 +25,7 @@ var Tags = Proto.extend({
 	{
 		console.log("getGeoJSONfromDB");
 		console.log(this);
-		$.getJSON('https://api.mongolab.com/api/1/databases/emotions/collections/FeatureCollection?apiKey=4fd8b749e4b0aedd849737fc', 
+		$.getJSON(this.url, 
 			function(data) 
 			{ 
 				var geoJSON = {

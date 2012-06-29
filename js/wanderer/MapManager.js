@@ -7,6 +7,7 @@ var MapManager = Proto.extend({
 	
 	// Properties
 	
+	dataUrl: undefined,
 	map: undefined,
 	options : 
 	{
@@ -26,8 +27,9 @@ var MapManager = Proto.extend({
 	
 	// Constructor
 	
-	constructor: function()
+	constructor: function(_dataUrl)
 	{
+		this.dataUrl = _dataUrl;
 		this.map = new OpenLayers.Map('map', this.options);
 		var mapnik = new OpenLayers.Layer.OSM("OpenStreetMap (Mapnik)");
 		
@@ -53,7 +55,7 @@ var MapManager = Proto.extend({
 		this.tagsLayer = new OpenLayers.Layer.Vector();
 		this.tagsLayer.events.register("added", this.tagsLayer, function()
 			{ 
-				this.tags = Tags.new();
+				this.tags = Tags.new(this.dataUrl);
 				this.tags.getGeoJSONfromDBaddGeoJSONTagsLayer(this.tagsLayer);
 			}.bind(this)
 		);
