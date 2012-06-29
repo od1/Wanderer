@@ -38,7 +38,7 @@ var MapManager = Proto.extend({
 		
 		// Activate Geolocation
 		
-		this.geolocManager = GeolocManager.new(this);
+		this.geolocManager = GeolocManager.new();
 		
 		this.geolocViewLayer = new OpenLayers.Layer.Vector();
 		this.map.addLayer(this.geolocViewLayer);
@@ -102,10 +102,11 @@ var MapManager = Proto.extend({
 		console.log("geolocUpdated in MapManager")
 		if(this.geolocManager.firstGeoloc){
 			// center the map on my geolocaiton
-			parent.reFocus(new OpenLayers.LonLat(this.geolocManager.position.coords.longitude, this.geolocManager.position.coords.latitude));
+			this.reFocus(new OpenLayers.LonLat(this.geolocManager.position.coords.longitude, this.geolocManager.position.coords.latitude));
 			this.geolocManager.firstGeoloc = false;
 		};
-		parent.geolocView.updateGraphic(this.geolocManager.point, this.geolocManager.position.coords.accuracy);
+		
+		this.geolocView.updateGraphic(this.geolocManager.point, this.geolocManager.position);
 	}
 });
 

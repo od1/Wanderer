@@ -10,15 +10,14 @@ var GeolocManager = Proto.extend({
 	geolocate: undefined,
 	position: undefined,
 	point: undefined,
-	parent: undefined,
 	firstGeoloc: true,
 	
 	
 	// Constructor
 	
-	constructor: function(_parent)
+	constructor: function()
 	{
-		parent = _parent;
+		
 	},
 	
 	

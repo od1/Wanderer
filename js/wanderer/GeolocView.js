@@ -25,17 +25,18 @@ var GeolocView = Proto.extend({
 	},
 	
 	
-	updateGraphic: function(_point, _accuracy)
+	updateGraphic: function(_point, _position)
 	{
+		console.log("updateGraphic")
 		this.point = _point;
-		this.accuracy = _accuracy;
-		
-		if(this.centerGraphic != undefined) {
-			this.layer.removeFeatures([this.rangeGraphic, this.centerGraphic]);
+		this.accuracy = _position.coords.accuracy;
+		if(!this.centerGraphic && !this.accuracyGraphic) {
+			this.drawCenterGraphic();
+			this.drawAccuracyGraphic();
 		};
-		
-		this.drawCenterGraphic();
-		this.drawAccuracyGraphic();
+		this.centerGraphic.move(new OpenLayers.LonLat(_point.x, _point.y));
+		this.accuracyGraphic.move(new OpenLayers.LonLat(_point.x, _point.y));
+		// Redraw this.accuracyGraphic.geometry if the accuracy changed (imply to change the select control on the other graphic)
 	},
 	
 	
